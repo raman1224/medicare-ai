@@ -28,8 +28,11 @@ export const uploadMessage = [
   async (req: Request, res: Response) => {
     try {
       const { message, receiverId, type } = req.body;
-      const senderId = req.user.id;
+if (!req.user) {
+  return res.status(401).json({ success: false, error: 'Unauthorized' });
+}
 
+const senderId = req.user.id;
       if (!req.file && !message) {
         return res.status(400).json({ success: false, error: 'Message or file required' });
       }
@@ -50,8 +53,9 @@ export const uploadMessage = [
               else resolve(result);
             }
           );
-          uploadStream.end(req.file.buffer);
-        });
+if (req.file) {
+  uploadStream.end(req.file.buffer);
+}        });
 
         fileUrl = (result as { secure_url: string }).secure_url;
         fileName = req.file.originalname;
@@ -85,7 +89,7 @@ export const uploadMessage = [
       chat.lastMessage = newMessage._id;
       await chat.save();
 
-      res.json({
+     return res.json({
         success: true,
         data: {
           message: newMessage,
@@ -94,7 +98,7 @@ export const uploadMessage = [
       });
     } catch (error) {
       console.error('Upload error:', error);
-      res.status(500).json({ success: false, error: 'Failed to upload message' });
+     return res.status(500).json({ success: false, error: 'Failed to upload message' });
     }
   }
 ];
@@ -108,8 +112,11 @@ function getFileType(mimetype: string): 'image' | 'file' | 'voice' | 'video' {
 
 export const getChats = async (req: Request, res: Response) => {
   try {
-    const userId = req.user.id as any;
+if (!req.user) {
+  return res.status(401).json({ success: false, error: 'Unauthorized' });
+}
 
+const userId = req.user.id;
     const chats = await Chat.find({ participants: userId })
       .populate('participants', 'name email avatar')
       .populate({
@@ -118,18 +125,21 @@ export const getChats = async (req: Request, res: Response) => {
       })
       .sort({ updatedAt: -1 });
 
-    res.json({ success: true, data: chats });
+    return res.json({ success: true, data: chats });
   } catch (error) {
     console.error('Get chats error:', error);
-    res.status(500).json({ success: false, error: 'Failed to get chats' });
+    return res.status(500).json({ success: false, error: 'Failed to get chats' });
   }
 };
 
 export const getMessages = async (req: Request, res: Response) => {
   try {
     const { chatId } = req.params;
-    const userId = req.user.id as any;
+if (!req.user) {
+  return res.status(401).json({ success: false, error: 'Unauthorized' });
+}
 
+const userId = req.user.id;
     const chat = await Chat.findOne({
       _id: chatId,
       participants: userId
@@ -154,25 +164,28 @@ export const getMessages = async (req: Request, res: Response) => {
       { read: true }
     );
 
-    res.json({ success: true, data: messages.reverse() });
+    return res.json({ success: true, data: messages.reverse() });
   } catch (error) {
     console.error('Get messages error:', error);
-    res.status(500).json({ success: false, error: 'Failed to get messages' });
+    return res.status(500).json({ success: false, error: 'Failed to get messages' });
   }
 };
 
 export const getUnreadCount = async (req: Request, res: Response) => {
   try {
-    const userId = req.user.id as any;
+if (!req.user) {
+  return res.status(401).json({ success: false, error: 'Unauthorized' });
+}
 
+const userId = req.user.id;
     const count = await Message.countDocuments({
       receiver: userId,
       read: false
     });
 
-    res.json({ success: true, data: { count } });
+   return res.json({ success: true, data: { count } });
   } catch (error) {
     console.error('Get unread count error:', error);
-    res.status(500).json({ success: false, error: 'Failed to get unread count' });
+    return res.status(500).json({ success: false, error: 'Failed to get unread count' });
   }
 };

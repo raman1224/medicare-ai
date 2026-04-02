@@ -136,7 +136,7 @@ try {
               console.log('✅ Existing user updated via Google:', user.email);
             }
             
-            return done(null, user);
+            return done(null, user as any);
           } catch (error) {
             console.error('❌ Google OAuth callback error:', error);
             return done(error as Error, undefined);
@@ -164,7 +164,7 @@ passport.deserializeUser(async (id: string, done) => {
   try {
     console.log('Deserializing user:', id);
     const user = await User.findById(id);
-    done(null, user);
+    done(null, user as any);
   } catch (error) {
     console.error('Deserialize error:', error);
     done(error, null);
