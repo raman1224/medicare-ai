@@ -14,6 +14,8 @@ export interface AuthUser {
 
 export interface AuthRequest extends Request {
   authUser?: AuthUser;
+    user?: AuthUser;
+
 }
 
 export interface DecodedToken {

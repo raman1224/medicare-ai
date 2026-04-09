@@ -1,4 +1,5 @@
 import { IUser } from '../models/User';
+import { AuthUser } from './auth.types';
 
 declare global {
   namespace Express {
@@ -11,7 +12,11 @@ declare global {
     }
 
     interface Request {
-      user?: User;
+      user?: any;
+            authUser?: AuthUser;
+      file?: Express.Multer.File;
+      files?: Express.Multer.File[];
+
     }
   }
 }

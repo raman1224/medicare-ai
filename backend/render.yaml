@@ -1,24 +1,31 @@
-# render.yaml - Place in root folder
+# render.yaml
 services:
   - type: web
     name: medicare-nepal-backend
-    runtime: node
-    plan: free
-    buildCommand: cd backend && npm install && npm run build
-    startCommand: cd backend && npm run start
+    env: node
+    region: singapore
+    buildCommand: |
+      npm install
+      npm run build
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 5000
-      - key: CLIENT_URL
-        value: https://medicare-nepal.vercel.app
-      - key: SERVER_URL
-        value: https://medicare-nepal-backend.onrender.com
-      # These will be set manually in Render Dashboard
+      - key: NODE_VERSION
+        value: 18.20.0
       - key: MONGODB_URI
         sync: false
       - key: JWT_SECRET
+        sync: false
+      - key: CLIENT_URL
+        sync: false
+      - key: SERVER_URL
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
         sync: false
       - key: GOOGLE_CLIENT_ID
         sync: false
@@ -28,15 +35,13 @@ services:
         sync: false
       - key: GITHUB_CLIENT_SECRET
         sync: false
-      - key: CLOUDINARY_CLOUD_NAME
+      - key: SMTP_HOST
         sync: false
-      - key: CLOUDINARY_API_KEY
-        sync: false
-      - key: CLOUDINARY_API_SECRET
-        sync: false
-      - key: GEMINI_API_KEY
+      - key: SMTP_PORT
         sync: false
       - key: SMTP_USER
         sync: false
       - key: SMTP_PASS
+        sync: false
+      - key: FROM_EMAIL
         sync: false

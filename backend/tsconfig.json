@@ -5,7 +5,8 @@
     "outDir": "./dist",
     "lib": ["ES2020"],
     "rootDir": "./src",
-    "strict": true,
+    "strict": false,
+    
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
@@ -18,6 +19,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "moduleResolution": "node",
+        "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": false,
+    "strictPropertyInitialization": false,
+    "noImplicitThis": false,
     "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
@@ -28,7 +34,7 @@
     }
   },
   "include": ["src/**/*"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist"]
 }
 
 

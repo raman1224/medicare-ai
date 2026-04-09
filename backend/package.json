@@ -5,12 +5,16 @@
   "type": "commonjs",
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/server.ts",
-    "build": "tsc",
-    "start": "node -r tsconfig-paths/register dist/server.js"
+    "build": "npm run build:clean && tsc",
+    "build:clean": "rm -rf dist",
+    "start": "node -r tsconfig-paths/register dist/server.js",
+    "postinstall": "npm install --save-dev @types/node @types/express @types/cors @types/morgan @types/compression @types/cookie-parser @types/express-session @types/passport @types/bcryptjs @types/jsonwebtoken @types/multer @types/nodemailer @types/passport-google-oauth20 @types/passport-github2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   },
   "dependencies": {
     "@google/generative-ai": "^0.21.0",
-    "@types/socket.io": "^3.0.2",
     "axios": "^1.13.3",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^1.41.0",
@@ -50,16 +54,15 @@
     "@types/bcryptjs": "^2.4.6",
     "@types/compression": "^1.8.1",
     "@types/cookie-parser": "^1.4.10",
-    "@types/cors": "^2.8.16",
-    "@types/express": "^4.17.20",
+    "@types/cors": "^2.8.19",
+    "@types/express": "^4.17.25",
     "@types/express-session": "^1.18.2",
     "@types/jsonwebtoken": "^9.0.10",
-    "@types/morgan": "^1.9.9",
-    "@types/multer": "^1.4.11",
-    "@types/node": "^20.8.6",
-    "@types/nodemailer": "^6.4.22",
+    "@types/morgan": "^1.9.10",
+    "@types/multer": "^1.4.13",
+    "@types/node": "^20.19.39",
+    "@types/nodemailer": "^6.4.23",
     "@types/passport": "^1.0.17",
-    "@types/passport-github": "^1.1.7",
     "@types/passport-github2": "^1.2.9",
     "@types/passport-google-oauth20": "^2.0.17",
     "nodemon": "^3.0.1",
