@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const connectDB = async (): Promise<void> => {
   try {
     // MongoDB connection URL (localhost वा cloud मा)
-    const mongoURI = process.env.MONGODB_URI || 'mongodb+srv://dangolraman3_db_user:aDYN04XbGlCUzc7c@cluster0.5kp48me.mongodb.net/medicare_nepal';
+    const mongoURI = process.env.MONGODB_URI || '';
         if (!mongoURI) {
       throw new Error('MONGODB_URI is not defined in .env file');
     }
