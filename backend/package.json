@@ -7,7 +7,7 @@
     "dev": "nodemon -r tsconfig-paths/register src/server.ts",
     "build": "npm run build:clean && tsc",
     "build:clean": "rm -rf dist",
-    "start": "node -r tsconfig-paths/register dist/server.js"
+"start": "node dist/server.js"
   },
   "engines": {
     "node": ">=18.0.0"
