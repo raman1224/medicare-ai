@@ -7,8 +7,7 @@
     "dev": "nodemon -r tsconfig-paths/register src/server.ts",
     "build": "npm run build:clean && tsc",
     "build:clean": "rm -rf dist",
-    "start": "node -r tsconfig-paths/register dist/server.js",
-    "postinstall": "npm install --save-dev @types/node @types/express @types/cors @types/morgan @types/compression @types/cookie-parser @types/express-session @types/passport @types/bcryptjs @types/jsonwebtoken @types/multer @types/nodemailer @types/passport-google-oauth20 @types/passport-github2"
+    "start": "node -r tsconfig-paths/register dist/server.js"
   },
   "engines": {
     "node": ">=18.0.0"

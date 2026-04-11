@@ -138,7 +138,7 @@ export const addMedicine = async (req: Request, res: Response): Promise<void> =>
     // Upload images if provided
     if (req.files && Array.isArray(req.files)) {
       const imageUrls: string[] = [];
-      for (const file of req.files as Express.Multer.File[]) {
+      for (const file of req.files as any[]) {
         const result = await cloudinary.uploader.upload(file.path, {
           folder: 'medicare/medicines',
         });

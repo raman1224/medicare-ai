@@ -32,7 +32,7 @@ if (!req.user) {
   return res.status(401).json({ success: false, error: 'Unauthorized' });
 }
 
-const senderId = req.user.id;
+const senderId = (req.user as any)._id;
       if (!req.file && !message) {
         return res.status(400).json({ success: false, error: 'Message or file required' });
       }
@@ -116,7 +116,7 @@ if (!req.user) {
   return res.status(401).json({ success: false, error: 'Unauthorized' });
 }
 
-const userId = req.user.id;
+const userId = (req.user as any)._id;
     const chats = await Chat.find({ participants: userId })
       .populate('participants', 'name email avatar')
       .populate({
@@ -139,7 +139,7 @@ if (!req.user) {
   return res.status(401).json({ success: false, error: 'Unauthorized' });
 }
 
-const userId = req.user.id;
+const userId = (req.user as any)._id;
     const chat = await Chat.findOne({
       _id: chatId,
       participants: userId
@@ -177,7 +177,7 @@ if (!req.user) {
   return res.status(401).json({ success: false, error: 'Unauthorized' });
 }
 
-const userId = req.user.id;
+const userId = (req.user as any)._id;
     const count = await Message.countDocuments({
       receiver: userId,
       read: false
