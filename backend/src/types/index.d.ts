@@ -11,6 +11,12 @@ export interface AuthUser {
   donorAvailable?: boolean;
   avatar?: string;
 }
+export interface DecodedToken {
+  id: string;
+  iat: number;
+  exp: number;
+}
+
 
 // Extend Express Request
 declare global {

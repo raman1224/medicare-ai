@@ -15,11 +15,9 @@ export interface AuthUser {
 export interface AuthRequest extends Request {
   authUser?: AuthUser;
     user?: AuthUser;
+  body: any;
+  query: any;
+  params: any;
 
 }
 
-export interface DecodedToken {
-  id: string;
-  iat: number;
-  exp: number;
-}
