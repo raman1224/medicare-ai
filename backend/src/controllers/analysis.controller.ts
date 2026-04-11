@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { uploadToCloudinary, deleteFile } from '../config/cloudinary';
 import FreeAIService from '../services/ai.service';
-import Analysis from '@/models/Analysis';
+import Analysis from '../models/Analysis';
 
 interface Analysis {
   user: any;
