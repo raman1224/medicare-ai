@@ -30,7 +30,10 @@ connectDB();
 
 // CRITICAL FIX: Simple CORS configuration that works
 app.use(cors({
-  origin: 'http://localhost:3000',
+origin: [
+  'http://localhost:3000',
+  'https://medicare-ai-5-ba7n.onrender.com'
+],  
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'Cookie'],
