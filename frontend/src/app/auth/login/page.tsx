@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useAuth } from "@/context/auth-context";
 import { Mail, Lock, Eye, EyeOff, ArrowRight, ArrowLeft } from "lucide-react";
 
@@ -58,23 +59,6 @@ export default function LoginPage() {
         animate={{ opacity: 1, scale: 1 }}
         className="relative w-full max-w-md"
       >
-        {/* Back Button */}
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="absolute -top-16 left-0"
-        >
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-gray-400 hover:text-white transition-colors group"
-          >
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10">
-              <ArrowLeft className="w-4 h-4" />
-            </div>
-            <span className="text-sm">Back to Home</span>
-          </Link>
-        </motion.div>
-
         {/* Error Message */}
         {error && (
           <motion.div
@@ -88,20 +72,45 @@ export default function LoginPage() {
 
         {/* Card */}
         <div className="glass-effect rounded-3xl p-8">
-          {/* Header */}
-          <div className="text-center mb-8">
-            <Link href="/" className="inline-flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">M</span>
-              </div>
-              <div className="text-left">
-                <h1 className="text-2xl font-bold text-white">Medicare Nepal</h1>
-                <p className="text-sm text-gray-400">Your Health Companion</p>
-              </div>
-            </Link>
-            <h2 className="text-3xl font-bold text-white mb-2">Welcome Back</h2>
-            <p className="text-gray-400">Sign in to access your healthcare dashboard</p>
+        {/* Header with Back Arrow and Logo */}
+  <div className="mb-8">
+    {/* Logo and Title - Centered properly */}
+    <div className="text-center">
+      <Link
+        href="/"
+        className="inline-flex items-center justify-center gap-3 mb-6 hover:opacity-80 transition-opacity group"
+      >
+        {/* Back Arrow */}
+        <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all">
+          <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-white" />
+        </div>
+        
+        {/* Logo */}
+        <div className="relative">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-md opacity-60" />
+          <div className="relative w-12 h-12 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center overflow-hidden border-2 border-white/20">
+            <Image
+              src="/logo6.png"
+              alt="Medicare Nepal"
+              width={48}
+              height={48}
+              className="w-10 h-10 object-contain"
+              priority
+            />
           </div>
+        </div>
+
+        {/* Text */}
+        <div className="text-left">
+          <h1 className="text-2xl font-bold text-white">Medicare Nepal</h1>
+          <p className="text-sm text-gray-400">Your Health Companion</p>
+        </div>
+      </Link>
+
+      <h2 className="text-3xl font-bold text-white mb-2">Welcome Back! 👋</h2>
+      <p className="text-gray-400">Sign in to continue to your healthcare dashboard</p>
+    </div>
+  </div>
 
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-6">
@@ -116,7 +125,7 @@ export default function LoginPage() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
                   placeholder="you@example.com"
                   required
                 />
@@ -131,7 +140,7 @@ export default function LoginPage() {
                 </label>
                 <Link
                   href="/auth/forgot-password"
-                  className="text-sm text-primary hover:text-primary/80"
+                  className="text-sm text-primary hover:text-primary/80 transition-colors"
                 >
                   Forgot password?
                 </Link>
@@ -142,14 +151,14 @@ export default function LoginPage() {
                   type={showPassword ? "text" : "password"}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="w-full pl-10 pr-10 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent"
+                  className="w-full pl-10 pr-10 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
                   placeholder="••••••••"
                   required
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
                 >
                   {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                 </button>
@@ -222,9 +231,9 @@ export default function LoginPage() {
               Don't have an account?{" "}
               <Link
                 href="/auth/register"
-                className="text-primary font-semibold hover:text-primary/80"
+                className="text-primary font-semibold hover:text-primary/80 transition-colors"
               >
-                Sign up free
+                Create free account
               </Link>
             </p>
           </div>
@@ -232,7 +241,7 @@ export default function LoginPage() {
 
         {/* Features List */}
         <div className="mt-8 grid grid-cols-2 gap-3">
-          {["AI Scanner", "@/7 Chat", "Hospital Finder", "Blood Bank"].map((feature, i) => (
+          {["AI Scanner", "24/7 Chat", "Hospital Finder", "Blood Bank"].map((feature, i) => (
             <div key={i} className="text-center">
               <div className="text-lg font-semibold text-white">{feature}</div>
               <div className="text-xs text-gray-400">Available</div>

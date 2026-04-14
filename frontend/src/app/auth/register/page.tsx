@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "@/context/auth-context";
 import { User, Mail, Lock, MapPin, Globe, ArrowRight, EyeOff, Eye, ArrowLeft } from "lucide-react";
+import Image from "next/image";
 
 const countries = ["Nepal", "India", "USA", "UK", "Australia", "Canada"];
 const languages = ["English", "Nepali", "Hindi", "Spanish", "French"];
@@ -125,12 +126,26 @@ export default function RegisterPage() {
         {/* Main Card */}
         <div className="glass-effect rounded-3xl overflow-hidden">
           <div className="md:flex">
+            
             {/* Left Side - Form */}
             <div className="md:w-2/3 p-8">
               <Link href="/" className="inline-flex items-center gap-3 mb-4 hover:opacity-80 transition-opacity">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-r from-primary to-secondary flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">M</span>
-                </div>
+               <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-white/10 transition-all">
+      <ArrowLeft className="w-4 h-4 text-gray-400 group-hover:text-white" />
+    </div>
+                <div className="relative">
+                               <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl blur-md opacity-60" />
+                               <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center overflow-hidden border-2 border-white/20">
+                                 <Image
+                                   src="/logo6.png"
+                                   alt="Medicare Nepal"
+                                   width={48}
+                                   height={48}
+                                   className="rounded-full w-10 h-10 object-contain"
+                                   priority
+                                 />
+                               </div>
+                             </div>
                 <div className="text-left">
                   <h1 className="text-2xl font-bold text-white">Medicare Nepal</h1>
                   <p className="text-sm text-gray-400">Your Health Companion</p>

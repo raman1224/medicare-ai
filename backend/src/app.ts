@@ -32,7 +32,7 @@ connectDB();
 app.use(cors({
 origin: [
   'http://localhost:3000',
-  'https://medicare-ai-5-ba7n.onrender.com'
+  'https://medicarenepal.vercel.app/'
 ],  
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
@@ -51,7 +51,8 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: false,
+    secure: true,
+      sameSite: 'none',
     httpOnly: true,
     maxAge: 24 * 60 * 60 * 1000
   }
