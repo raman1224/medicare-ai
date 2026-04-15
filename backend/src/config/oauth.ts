@@ -16,8 +16,8 @@ console.log('GITHUB_CLIENT_ID exists:', !!process.env.GITHUB_CLIENT_ID);
 console.log('GITHUB_CLIENT_ID value:', process.env.GITHUB_CLIENT_ID?.substring(0, 10) + '...');
 console.log('================================');
 
-const SERVER_URL = process.env.SERVER_URL || 'http://localhost:5000';
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:3000';
+const SERVER_URL = process.env.SERVER_URL?.replace(/\/$/, '') || 'http://localhost:5000';
+const CLIENT_URL = process.env.CLIENT_URL?.replace(/\/$/, '') || 'http://localhost:3000';
 
 // FORCE GitHub strategy registration (remove the condition for testing)
 try {
