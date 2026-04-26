@@ -26,7 +26,6 @@ const startServer = async () => {
         credentials: true
       }
     });
-
     setupSocket(io);
 
     // ✅ START SERVER (IMPORTANT)

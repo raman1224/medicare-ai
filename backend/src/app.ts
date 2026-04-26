@@ -32,7 +32,7 @@ connectDB();
 app.use(cors({
 origin: [
   'http://localhost:3000',
-  'https://medicarenepal.vercel.app/'
+  'https://medicarenepal.vercel.app'
 ],  
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
