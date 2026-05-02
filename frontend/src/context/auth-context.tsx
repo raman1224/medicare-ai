@@ -25,6 +25,7 @@ interface AuthContextType {
   logout: () => Promise<void>;
   loginWithGoogle: () => void;
   loginWithGithub: () => void;
+    setUser: (user: User | null) => void; 
   error: string | null;
   clearError: () => void;
 }
@@ -185,6 +186,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       logout,
       loginWithGoogle,
       loginWithGithub,
+      setUser, 
       error,
       clearError
     }}>
